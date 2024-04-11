@@ -1,11 +1,12 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { highlightQuote } from '../state/quotesSlice';
 
 export default function Quotes() {
   const quotes = useSelector(st => st.quotesSlice.quotes);
   const displayAllQuotes = useSelector(st => st.quotesSlice.displayAllQuotes) // ✨ `displayAllQuotes` must come from the Redux store
   const highlightedQuote = useSelector(st => st.quotesSlice.highlightedQuote) // ✨ `highlightedQuote` must come from the Redux store
-
+  const dispatch = useDispatch();
   return (
     <div id="quotes">
       <h3>Quotes</h3>
@@ -24,7 +25,7 @@ export default function Quotes() {
                 <div>{qt.authorName}</div>
                 <div className="quote-buttons">
                   <button onClick={() => {/* ✨ dispatch an action */ }}>DELETE</button>
-                  <button onClick={() => {/* ✨ dispatch an action */ }}>HIGHLIGHT</button>
+                  <button onClick={() => dispatch(highlightQuote(qt.id))}>HIGHLIGHT</button>
                   <button onClick={() => {/* ✨ dispatch an action */ }}>FAKE</button>
                 </div>
               </div>

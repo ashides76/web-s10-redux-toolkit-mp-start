@@ -31,14 +31,15 @@ export const quotesSlice = createSlice({
     ],
   },
   reducers: {
-    defaultState: state => {
-      return state.initialState
+    highlightQuote: (state, action) => {
+      let quote = state.quotes.id !== action.payload ? action.payload : null
+      state.highlightedQuote = quote
     }
   }
 })
 
 export const {
-  defaultState,
+  highlightQuote,
 } = quotesSlice.actions
 
 export default quotesSlice.reducer
