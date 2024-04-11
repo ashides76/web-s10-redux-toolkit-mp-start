@@ -34,12 +34,16 @@ export const quotesSlice = createSlice({
     highlightQuote: (state, action) => {
       let quote = state.quotes.id !== action.payload ? action.payload : null
       state.highlightedQuote = quote
+    },
+    deleteQuote: (state, action) => {
+      state.quotes = state.quotes.filter(qt => qt.id !== action.payload);
     }
   }
 })
 
 export const {
   highlightQuote,
+  deleteQuote
 } = quotesSlice.actions
 
 export default quotesSlice.reducer
