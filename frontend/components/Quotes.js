@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { highlightQuote, deleteQuote } from '../state/quotesSlice';
+import { highlightQuote, deleteQuote, fakeQuote } from '../state/quotesSlice';
 
 export default function Quotes() {
   const quotes = useSelector(st => st.quotesSlice.quotes);
@@ -26,7 +26,7 @@ export default function Quotes() {
                 <div className="quote-buttons">
                   <button onClick={() => dispatch(deleteQuote(qt.id))}>DELETE</button>
                   <button onClick={() => dispatch(highlightQuote(qt.id))}>HIGHLIGHT</button>
-                  <button onClick={() => {/* ✨ dispatch an action */ }}>FAKE</button>
+                  <button onClick={() => dispatch(fakeQuote(qt.id))}>FAKE</button>
                 </div>
               </div>
             ))

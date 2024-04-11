@@ -37,13 +37,20 @@ export const quotesSlice = createSlice({
     },
     deleteQuote: (state, action) => {
       state.quotes = state.quotes.filter(qt => qt.id !== action.payload);
+    },
+    fakeQuote: (state, action) => {
+      state.quotes = state.quotes.map(qt => {
+        if (qt.id !== action.payload) return qt
+        return { ...qt, apocryphal: !qt.apocryphal }
+      })
     }
   }
 })
 
 export const {
   highlightQuote,
-  deleteQuote
+  deleteQuote,
+  fakeQuote,
 } = quotesSlice.actions
 
 export default quotesSlice.reducer
