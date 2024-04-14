@@ -1,4 +1,6 @@
 import React, { useReducer } from 'react'
+import { useDispatch } from 'react-redux'
+import { createQuote, getNextId  } from '../state/quotesSlice';
 
 const CHANGE_INPUT = 'CHANGE_INPUT'
 const RESET_FORM = 'RESET_FORM'
@@ -23,6 +25,7 @@ const reducer = (state, action) => {
 
 export default function TodoForm() {
   const [state, dispatch] = useReducer(reducer, initialState)
+  const dispatchQuote = useDispatch();
 
   const onChange = ({ target: { name, value } }) => {
     dispatch({ type: CHANGE_INPUT, payload: { name, value } })
@@ -32,6 +35,13 @@ export default function TodoForm() {
   }
   const onNewQuote = evt => {
     evt.preventDefault()
+    const newQuote = {
+      id: getNextId(),
+      quoteText: state.quoteText,
+      authorName: state.authorName,
+      apocryphal: false
+    }
+    dispatchQuote(createQuote(newQuote))
     // ✨ dispatch creation of a new quote here, using the values from the form
     resetForm()
   }

@@ -43,6 +43,9 @@ export const quotesSlice = createSlice({
         if (qt.id !== action.payload) return qt
         return { ...qt, apocryphal: !qt.apocryphal }
       })
+    },
+    createQuote: (state, action) => {
+      state.quotes.push(action.payload)
     }
   }
 })
@@ -51,6 +54,8 @@ export const {
   highlightQuote,
   deleteQuote,
   fakeQuote,
-} = quotesSlice.actions
+  createQuote,
 
+} = quotesSlice.actions
+export { getNextId };
 export default quotesSlice.reducer
