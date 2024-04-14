@@ -44,9 +44,12 @@ export const quotesSlice = createSlice({
         return { ...qt, apocryphal: !qt.apocryphal }
       })
     },
+    toggleFakeQuotes: (state) => {
+      state.displayAllQuotes = !state.displayAllQuotes
+    },
     createQuote: (state, action) => {
       state.quotes.push(action.payload)
-    }
+    },
   }
 })
 
@@ -54,6 +57,7 @@ export const {
   highlightQuote,
   deleteQuote,
   fakeQuote,
+  toggleFakeQuotes,
   createQuote,
 
 } = quotesSlice.actions

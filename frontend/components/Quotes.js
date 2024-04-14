@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { highlightQuote, deleteQuote, fakeQuote } from '../state/quotesSlice';
+import { highlightQuote, deleteQuote, fakeQuote, toggleFakeQuotes } from '../state/quotesSlice';
 
 export default function Quotes() {
   const quotes = useSelector(st => st.quotesSlice.quotes);
@@ -35,7 +35,7 @@ export default function Quotes() {
           !quotes?.length && "No quotes here! Go write some."
         }
       </div>
-      {!!quotes?.length && <button onClick={() => {/* ✨ dispatch an action */ }}>
+      {!!quotes?.length && <button onClick={() => (dispatch(toggleFakeQuotes()))}>
         {displayAllQuotes ? 'HIDE' : 'SHOW'} FAKE QUOTES
       </button>}
     </div>
